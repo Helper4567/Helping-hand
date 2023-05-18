@@ -1,0 +1,176 @@
+Linear Regression Algorithm 
+
+Code
+
+# importing libraries 
+
+from sklearn.linear_model import LinearRegression 
+
+from sklearn import datasets 
+
+# loading datasets 
+
+diabetes = datasets.load_diabetes() 
+
+# assigning features and labels to x and y respectively 
+
+x = diabetes.data 
+
+y = diabetes.target 
+
+print(x,y) 
+
+# splitting dataset into training and testing set 
+
+x_train = x[:-30]
+
+
+x_test = x[-30:]
+
+y_train = y[:-30] 
+
+y_test = y[-30:]
+
+# creating a model 
+
+model = LinearRegression() 
+
+# fitting the data into the model 
+
+model.fit(x_train,y_train) 
+# making predictions 
+
+preds = model.predict(x_test) 
+
+# importing mean_squared_error 
+
+from sklearn.metrics import mean_squared_error, r2_score 
+
+import math 
+
+# checking accuracy of model 
+
+print("mse", mean_squared_error(y_test,preds)) 
+
+rmse = math.sqrt(mean_squared_error(y_test,preds)) 
+
+print(rmse) 
+
+check_score = r2_score(y_test,preds) 
+
+print(check_score) 
+
+Logistic Regression Algorithm 
+
+Code
+
+# importing libraries 
+
+from sklearn.linear_model import LogisticRegression 
+
+from sklearn import datasets 
+
+# loading datasets 
+
+iris = datasets.load_iris() 
+
+# splitting the data 
+x = iris.data 
+
+y = iris.target 
+
+# creating a model 
+
+clf = LogisticRegression() 
+
+# fitting data into the model 
+
+clf.fit(x,y) 
+
+# making predictions 
+
+preds = clf.predict([[2.6,6.0,4.5,3.5]]) 
+
+print(preds) 
+
+--------------------------------------------------------------------------------------------- 
+
+K Nearest Neighbours Algorithm 
+
+Code 
+
+# importing libraries 
+
+from sklearn import datasets 
+
+from sklearn.neighbors import KNeighborsClassifier 
+
+# loading datasets 
+iris = datasets.load_iris() 
+
+# splitting the data 
+
+features = iris.data 
+
+labels = iris.target 
+
+# Training the classifier 
+
+knn = KNeighborsClassifier() 
+
+knn.fit(features,labels) 
+
+# Testing our model 
+
+preds = knn.predict([[2.4, 6.8, 1.5, 4.5]]) 
+
+preds 
+
+# To check accuracy of knn 
+
+from sklearn.metrics import accuracy_score 
+
+print(accuracy_score(labels[[5]], preds)) 
+
+--------------------------------------------------------------------------------------------------------- 
+
+Decision tree classifier 
+
+import pandas 
+
+from sklearn import tree 
+
+from sklearn.tree import DecisionTreeClassifier 
+
+import matplotlib.pyplot as plt 
+
+df = pandas.read_csv("data.csv") 
+
+d = {'UK': 0, 'USA': 1, 'UAE': 2} 
+
+df['Nationality'] = df['Nationality'].map(d) 
+
+d = {'YES': 1, 'NO': 0} 
+
+df['Go'] = df['Go'].map(d)
+features = ['Age', 'Experience', 'Rank', 'Nationality'] 
+
+X = df[features] 
+
+y = df['Go'] 
+
+dtree = DecisionTreeClassifier() 
+
+dtree = dtree.fit(X, y)
+
+tree.plot_tree(dtree, feature_names=features) 
+
+print(dtree.predict([[40, 10, 7, 1]])) 
+
+What would the answer be if the comedy rank was 6? 
+
+print(dtree.predict([[40, 10, 6, 1]])) 
+
+Note that :- the name of dataset will be as per the dataset name which 
+
+I’m going to give you during your practical exam 
